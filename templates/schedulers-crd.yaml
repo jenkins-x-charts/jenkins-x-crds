@@ -16,6 +16,7 @@ spec:
     - scheduler
     singular: scheduler
   scope: Namespaced
+{{- if .Values.enableSchedulerValidation }}
   validation:
     openAPIV3Schema:
       description: Scheduler is configuration for a pipeline scheduler
@@ -15193,6 +15194,7 @@ spec:
               type: array
           type: object
       type: object
+{{- end }}
   version: v1
   versions:
   - name: v1

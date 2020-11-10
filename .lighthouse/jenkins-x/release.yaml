@@ -39,7 +39,7 @@ spec:
             source /workspace/source/.jx/variables.sh
             jx step changelog --version v${VERSION}
         - image: gcr.io/jenkinsxio/jx-cli:3.0.684
-          name: promote-helm-release
+          name: helm-release
           resources: {}
           script: |
             #!/usr/bin/env bash

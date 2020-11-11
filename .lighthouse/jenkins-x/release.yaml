@@ -39,11 +39,14 @@ spec:
             source /workspace/source/.jx/variables.sh
             jx step changelog --version v${VERSION}
         - image: gcr.io/jenkinsxio/jx-cli:3.0.684
-          name: helm-release
+          name: promote-helm-release
           resources: {}
           script: |
             #!/usr/bin/env bash
-            jx gitops helm release
+            source /workspace/source/.jx/variables.sh
+            cd charts/jenkins-x-crds
+            make release
+
   podTemplate: {}
   serviceAccountName: tekton-bot
   timeout: 240h0m0s

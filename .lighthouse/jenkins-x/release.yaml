@@ -28,9 +28,15 @@ spec:
           resources: {}
         - name: promote-changelog
           resources: {}
-        - name: promote-helm-release
+        - image: gcr.io/jenkinsxio/helm-release:0.0.1
+          name: release-chart
           resources: {}
-  podTemplate: {}
+          script: |
+            #!/usr/bin/env sh
+            if [ -d "/workspace/source/charts/$REPO_NAME" ]; then source .jx/variables.sh
+            cd /workspace/source/charts/$REPO_NAME
+            make release; else echo no charts; fi
+          podTemplate: {}
   serviceAccountName: tekton-bot
   timeout: 240h0m0s
 status: {}

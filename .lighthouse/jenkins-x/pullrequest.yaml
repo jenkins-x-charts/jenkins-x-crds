@@ -11,6 +11,7 @@ spec:
       taskSpec:
         metadata: {}
         stepTemplate:
+          image: uses:jenkins-x/jx3-pipeline-catalog/tasks/helm/pullrequest.yaml@versionStream
           name: ""
           resources:
             requests:
@@ -21,18 +22,10 @@ spec:
         - image: uses:jenkins-x/jx3-pipeline-catalog/tasks/git-clone/git-clone-pr.yaml@versionStream
           name: ""
           resources: {}
-        - image: gcr.io/jenkinsxio/jx-cli:3.0.684
-          name: jx-variables
+        - name: jx-variables
           resources: {}
-          script: |
-            #!/usr/bin/env bash
-            jx gitops variables
-        - image: gcr.io/jenkinsxio/jx-cli:3.0.684
-          name: build-helm-build
+        - name: build-helm-build
           resources: {}
-          script: |
-            #!/bin/sh
-            jx step helm build
   podTemplate: {}
   serviceAccountName: tekton-bot
   timeout: 240h0m0s

@@ -623,6 +623,7 @@ spec:
                                 the time package offers.
                               format: date-time
                               type: string
+                              nullable: true
                             status:
                               type: string
                           type: object
